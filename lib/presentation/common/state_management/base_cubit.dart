@@ -7,11 +7,11 @@ import 'base_state.dart';
 class BaseCubit<T extends BaseState> extends BlocBase<T> {
   BaseCubit(super.state);
 
-  void emitInitial([T? updatedState]) {
+  void emitEmpty([T? updatedState]) {
     final newState = updatedState ?? state;
     emit(
       (newState.copyWith(
-        status: StateStatus.initial,
+        status: StateStatus.empty,
         error: ExternalError.none,
       ) as T),
     );

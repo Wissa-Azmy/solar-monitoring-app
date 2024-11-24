@@ -6,11 +6,14 @@ import 'package:solar_monitoring_app/presentation_dependencies/solar_data_cubit_
 class SolarDataCubit extends BaseCubit<SolarDataState> {
   final SolarDataCubitUseCases useCases;
 
-  SolarDataCubit(super.state, {required this.useCases}) {
-    _getSolarData();
-  }
+  factory SolarDataCubit() => SolarDataCubit.withValues(
+        const SolarDataState(),
+        useCases: SolarDataCubitUseCases(),
+      );
 
-  Future<void> _getSolarData() async {
+  SolarDataCubit.withValues(super.state, {required this.useCases});
+
+  Future<void> getSolarData() async {
     emitLoading();
 
     try {
@@ -34,7 +37,7 @@ class SolarDataCubit extends BaseCubit<SolarDataState> {
         houseMonitoringData: houseData,
         batteryMonitoringData: batteryData,
       ));
-    } catch(error) {
+    } catch (error) {
       emitFailure(error);
     }
   }

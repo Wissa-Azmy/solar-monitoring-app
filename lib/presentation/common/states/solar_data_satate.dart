@@ -44,9 +44,9 @@ class SolarDataState extends BaseState {
 
   @override
   String toString()=> '''\n\t  { 
-      solar data list: $solarMonitoringData, 
-      house data list: $houseMonitoringData, 
-      batter data list: $batteryMonitoringData, 
+      solar data list: ${solarMonitoringData.length}, 
+      house data list: ${houseMonitoringData.length}, 
+      batter data list: ${batteryMonitoringData.length}, 
       ${super.toString()}
     }''';
 }

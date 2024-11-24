@@ -20,7 +20,7 @@ class SolarDataDto {
 
 extension DomainModelExtension on SolarDataDto {
   SolarDataModel get toDomainModel => SolarDataModel(
-    dateTime: timestamp,
+    timestamp: timestamp,
     powerInWatts: value,
   );
 }

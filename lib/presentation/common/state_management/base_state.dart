@@ -4,7 +4,7 @@ import '../../../domain/common/error_handling/app_error.dart';
 import '../../../domain/common/error_handling/external_error.dart';
 
 enum StateStatus {
-  initial,
+  empty,
   loading,
   success,
   failure;
@@ -14,7 +14,7 @@ class BaseState extends Equatable {
   final StateStatus status;
   final AppError error;
 
-  bool get isInitializing => status == StateStatus.initial;
+  bool get isEmpty => status == StateStatus.empty;
 
   bool get isLoading => status == StateStatus.loading;
 
@@ -25,7 +25,7 @@ class BaseState extends Equatable {
   const BaseState({
     StateStatus? status,
     AppError? error,
-  })  : status = status ?? StateStatus.initial,
+  })  : status = status ?? StateStatus.empty,
         error = error ?? ExternalError.none;
 
   BaseState copyWith({
