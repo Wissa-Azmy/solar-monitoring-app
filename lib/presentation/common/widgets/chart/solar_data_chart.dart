@@ -12,28 +12,31 @@ class SolarDataChart extends StatelessWidget {
   const SolarDataChart({super.key, required this.data});
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => SolarDataChartCubit(data),
-      child: BlocBuilder<SolarDataChartCubit, SolarDataChartState>(
-        builder: (context, state) => Padding(
-          padding: AppSize.small.hPadding,
-          child: state.isEmpty
-              ? const Center(child: Text('No Data'))
-              : Column(
-                  children: [
-                    AppSize.medium.vSpace,
-                    const FilterButton(),
-                    AppSize.medium.vSpace,
-                    const DataChart(),
-                    AppSize.medium.vSpace,
-                    const UnitSwitchButton(),
-                  ],
-                ),
+  Widget build(BuildContext context) => BlocProvider(
+        create: (_) => SolarDataChartCubit(data),
+        child: BlocBuilder<SolarDataChartCubit, SolarDataChartState>(
+          builder: (context, state) => Padding(
+            padding: AppSize.small.hPadding,
+            child: state.isEmpty
+                ? const Text('No Data')
+                : Column(
+                    children: [
+                      AppSize.medium.vSpace,
+                      const DataChart(),
+                      AppSize.medium.vSpace,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const UnitSwitchButton(),
+                          AppSize.medium.hSpace,
+                          const FilterButton(),
+                        ],
+                      ),
+                    ],
+                  ),
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class FilterButton extends StatelessWidget {
@@ -141,7 +144,7 @@ class UnitSwitchButton extends StatelessWidget {
                 value: state.isShowingKiloWatts,
                 onChanged: context.read<SolarDataChartCubit>().toggleIsShowingKiloWatts,
               ),
-              const Text("Kilowatts"),
+              const Text("KW"),
             ],
           ),
         ),

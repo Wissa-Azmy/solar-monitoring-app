@@ -1,3 +1,5 @@
+import 'package:http/http.dart';
+
 import 'app_error.dart';
 
 class GenericError extends AppError {
@@ -19,8 +21,12 @@ class GenericError extends AppError {
       return currentError.toString();
     }
     if (currentError is Exception) {
+      if (currentError is ClientException) {
+        return 'Connection Failure: Server is Unreachable!';
+      }
       return currentError.toString();
     }
+
     if (currentError is String) {
       return currentError;
     }

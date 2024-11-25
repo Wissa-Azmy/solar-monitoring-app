@@ -1,35 +1,37 @@
 import 'package:solar_monitoring_app/domain/models/monitoring_type.dart';
 import 'package:solar_monitoring_app/presentation/common/state_management/base_cubit.dart';
 import 'package:solar_monitoring_app/presentation/common/states/solar_data_satate.dart';
-import 'package:solar_monitoring_app/presentation_dependencies/solar_data_cubit_use_cases.dart';
+import 'package:solar_monitoring_app/presentation_dependencies/solar_app_use_cases.dart';
+
+import '../../../domain/use_cases/get_solar_data_use_case.dart';
 
 class SolarDataCubit extends BaseCubit<SolarDataState> {
-  final SolarDataCubitUseCases useCases;
+  final GetSolarDataUseCase getSolarDataUseCase;
 
   factory SolarDataCubit() => SolarDataCubit.withValues(
-        const SolarDataState(),
-        useCases: SolarDataCubitUseCases(),
+        SolarDataState(),
+        getSolarDataUseCase: SolarAppUseCases.makeGetSolarDataUseCase(),
       );
 
-  SolarDataCubit.withValues(super.state, {required this.useCases});
+  SolarDataCubit.withValues(super.state, {required this.getSolarDataUseCase});
 
   Future<void> getSolarData() async {
     emitLoading();
 
     try {
-      final solarData = await useCases.getSolarData.invoke(
+      final solarData = await getSolarDataUseCase.invoke(
         type: MonitoringType.solar,
-        date: '2024.10.24',
+        date: state.selectedDate,
       );
 
-      final houseData = await useCases.getSolarData.invoke(
+      final houseData = await getSolarDataUseCase.invoke(
         type: MonitoringType.house,
-        date: '2024.10.24',
+        date: state.selectedDate,
       );
 
-      final batteryData = await useCases.getSolarData.invoke(
+      final batteryData = await getSolarDataUseCase.invoke(
         type: MonitoringType.battery,
-        date: '2024.10.24',
+        date: state.selectedDate,
       );
 
       emitSuccess(state.copyWith(
@@ -40,5 +42,14 @@ class SolarDataCubit extends BaseCubit<SolarDataState> {
     } catch (error) {
       emitFailure(error);
     }
+  }
+
+  void selectDate(DateTime date) {
+    emitPreviousState(state.copyWith(selectedDate: date));
+    getSolarData();
+  }
+
+  void selectTab(int tabIndex) {
+    emitPreviousState(state.copyWith(selectedTabIndex: tabIndex));
   }
 }

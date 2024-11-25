@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solar_monitoring_app/presentation/common/design/app_theme.dart';
 import 'package:solar_monitoring_app/presentation/common/state_management/app_bloc_observer.dart';
-import 'package:solar_monitoring_app/presentation/monitoring_tab_controller.dart';
+import 'package:solar_monitoring_app/presentation/screens/tab_bar_controller.dart';
 
 void main() {
   Bloc.observer = const AppBlocObserver();
@@ -27,5 +27,5 @@ class SolarMonitoringApp extends StatelessWidget {
   const SolarMonitoringApp({super.key});
 
   @override
-  Widget build(BuildContext context) => const MonitoringTabController();
+  Widget build(BuildContext context) => TabBarController();
 }

@@ -46,6 +46,16 @@ class BaseCubit<T extends BaseState> extends BlocBase<T> {
     );
   }
 
+  void emitPreviousState([T? updatedState]) {
+    final newState = updatedState ?? state;
+    emit(
+      (newState.copyWith(
+        status: state.status,
+        error: state.error,
+      ) as T),
+    );
+  }
+
   @override
   void onChange(Change<T> change) {
     super.onChange(change);

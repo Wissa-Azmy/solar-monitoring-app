@@ -1,3 +1,4 @@
+import 'package:solar_monitoring_app/domain/common/extensions/date_time_extensions.dart';
 import 'package:solar_monitoring_app/domain/models/solar_data_model.dart';
 import 'package:solar_monitoring_app/domain/repositories_protocols/solar_data_repository_protocol.dart';
 
@@ -12,7 +13,7 @@ class GetSolarDataUseCase {
 
   Future<List<SolarDataModel>> invoke({
     required MonitoringType type,
-    required String date,
+    required DateTime date,
   }) async =>
-      await solarDataRepo.getSolarData(type: type, date: date);
+      await solarDataRepo.getSolarData(type: type, date: date.stringDate);
 }
