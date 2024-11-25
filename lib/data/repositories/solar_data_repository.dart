@@ -16,12 +16,15 @@ class SolarDataRepository implements SolarDataRepositoryProtocol {
   Future<List<SolarDataModel>> getSolarData({
     required MonitoringType type,
     required String date,
+    required bool useCache,
   }) async {
     final cachingKey = '${type.name} $date';
-    final cachedDtos = await cacheDataService.getData(cachingKey);
-    if (cachedDtos != null) {
-      final cachedData = cachedDtos.map((dto) => dto.toDomainModel).toList();
-      return cachedData;
+    if (useCache) {
+      final cachedDtos = await cacheDataService.getData(cachingKey);
+      if (cachedDtos != null) {
+        final cachedData = cachedDtos.map((dto) => dto.toDomainModel).toList();
+        return cachedData;
+      }
     }
 
     final liveDataDtos = await solarDataService.getSolarData(type: type, date: date);
@@ -29,5 +32,10 @@ class SolarDataRepository implements SolarDataRepositoryProtocol {
 
     final liveData = liveDataDtos.map((dto) => dto.toDomainModel).toList();
     return liveData;
+  }
+
+  @override
+  Future<void> clearCache() async {
+    await cacheDataService.clearAll();
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solar_monitoring_app/presentation/common/design/app_theme.dart';
 import 'package:solar_monitoring_app/presentation/common/extensions/context_extensions.dart';
+import 'package:solar_monitoring_app/presentation/common/widgets/text_label.dart';
 
 class SolarAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -12,7 +13,7 @@ class SolarAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) => AppBar(
-        title: Text(
+        title: TextLabel(
           title,
           style: context.font.titleLarge?.semiBold.copyWith(
             color: context.color.onPrimary,

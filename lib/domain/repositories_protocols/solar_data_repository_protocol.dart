@@ -6,5 +6,8 @@ abstract class SolarDataRepositoryProtocol {
   Future<List<SolarDataModel>> getSolarData({
     required MonitoringType type,
     required String date,
+    required bool useCache,
   });
+
+  Future<void> clearCache();
 }

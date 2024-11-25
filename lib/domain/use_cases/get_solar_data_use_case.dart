@@ -14,6 +14,11 @@ class GetSolarDataUseCase {
   Future<List<SolarDataModel>> invoke({
     required MonitoringType type,
     required DateTime date,
+    required bool isReloading,
   }) async =>
-      await solarDataRepo.getSolarData(type: type, date: date.stringDate);
+      await solarDataRepo.getSolarData(
+        type: type,
+        date: date.stringDate,
+        useCache: !isReloading,
+      );
 }

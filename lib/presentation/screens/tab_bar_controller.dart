@@ -11,6 +11,7 @@ import 'package:solar_monitoring_app/presentation/screens/solar_generation_scree
 
 import '../common/states/solar_data_cubit.dart';
 import '../common/states/solar_data_satate.dart';
+import '../common/widgets/text_label.dart';
 
 class TabBarController extends StatelessWidget {
   TabBarController({super.key});
@@ -58,21 +59,18 @@ class TabBarController extends StatelessWidget {
               currentIndex: state.selectedTabIndex,
             ),
             body: AppStateBody<SolarDataCubit, SolarDataState>(
-              body: RefreshIndicator(
-                onRefresh: context.read<SolarDataCubit>().getSolarData,
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Column(
-                        children: [
-                          AppSize.medium.vSpace,
-                          const FilterButton(),
-                          screenFor(state),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              onRefresh: () => context.read<SolarDataCubit>().getSolarData(isReloading: true),
+              body: Column(
+                children: [
+                  AppSize.medium.vSpace,
+                  const FilterButton(),
+                  screenFor(state),
+                  AppSize.medium.vSpace,
+                  ElevatedButton(
+                    onPressed: context.read<SolarDataCubit>().clearCache,
+                    child: const TextLabel('Clear Cache'),
+                  ),
+                ],
               ),
             ),
           ),
@@ -91,7 +89,7 @@ class FilterButton extends StatelessWidget {
             firstDate: state.pickerMinimumDate,
             lastDate: state.pickerMaxDate,
           ),
-          child: Text(state.selectedDate.stringDate),
+          child: TextLabel(state.selectedDate.stringDate),
         ),
       );
 

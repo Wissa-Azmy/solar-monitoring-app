@@ -6,6 +6,8 @@ import 'package:solar_monitoring_app/presentation/common/design/app_size.dart';
 import 'package:solar_monitoring_app/presentation/common/widgets/chart/solar_data_chart_state.dart';
 import 'package:solar_monitoring_app/presentation/common/widgets/chart/solart_data_chart_cubit.dart';
 
+import '../text_label.dart';
+
 class SolarDataChart extends StatelessWidget {
   final List<SolarDataModel> data;
 
@@ -18,7 +20,7 @@ class SolarDataChart extends StatelessWidget {
           builder: (context, state) => Padding(
             padding: AppSize.small.hPadding,
             child: state.isEmpty
-                ? const Text('No Data')
+                ? const TextLabel('No Data')
                 : Column(
                     children: [
                       AppSize.medium.vSpace,
@@ -50,7 +52,7 @@ class FilterButton extends StatelessWidget {
             startTime: state.startTime,
             endTime: state.endTime,
           ),
-          child: Text(state.filterButtonText),
+          child: TextLabel(state.filterButtonText),
         ),
       );
 
@@ -97,7 +99,7 @@ class DataChart extends StatelessWidget {
                     showTitles: true,
                     reservedSize: AppSize.xLarge,
                     interval: state.isShowingKiloWatts ? 1 : 1000,
-                    getTitlesWidget: (value, meta) => Text(
+                    getTitlesWidget: (value, meta) => TextLabel(
                       "${value.toStringAsFixed(0)} ${state.unitText}",
                       style: const TextStyle(fontSize: AppSize.xSmall),
                     ),
@@ -108,7 +110,7 @@ class DataChart extends StatelessWidget {
                     showTitles: true,
                     getTitlesWidget: (value, meta) {
                       final date = DateTime.fromMillisecondsSinceEpoch(value.toInt());
-                      return Text(
+                      return TextLabel(
                         "${date.hour}:${date.minute.toString().padLeft(2, '0')}",
                         style: const TextStyle(fontSize: AppSize.xSmall),
                       );
@@ -139,12 +141,12 @@ class UnitSwitchButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Watts"),
+              const TextLabel("Watts"),
               Switch(
                 value: state.isShowingKiloWatts,
                 onChanged: context.read<SolarDataChartCubit>().toggleIsShowingKiloWatts,
               ),
-              const Text("KW"),
+              const TextLabel("KW"),
             ],
           ),
         ),
