@@ -64,6 +64,6 @@ class SolarDataCubit extends BaseCubit<SolarDataState> {
   Future<void> clearCache() async {
     emitLoading();
     await clearCacheUseCase.invoke();
-    getSolarData(isReloading: true);
+    emitSuccess();
   }
 }
