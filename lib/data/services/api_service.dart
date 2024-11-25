@@ -29,17 +29,18 @@ class ApiService implements ApiServiceProtocol {
 }
 
 // Service Mock
-// class MockApiService implements ApiServiceProtocol {
-//   @override
-//   Future<Response> sendGetRequest(String url) async {
-//     // Return a fake HTTP response
-//     return Response(
-//       '[{"timestamp": "2024-10-20T00:00:00.000Z", "value": 1234}]',
-//       200,
-//     );
-//   }
-// }
+class MockApiService implements ApiServiceProtocol {
+  @override
+  Future<Response> sendGetRequest(
+    ApiResource resource,
+    Map<String, String> parameters,
+  ) async =>
+      Response(
+        '[{"timestamp": "2024-10-20T00:00:00.000Z", "value": 1234}]',
+        200,
+      );
+}
 
-// extension MockExtension on ApiService {
-//   static ApiServiceProtocol get mock => MockApiService();
-// }
+extension MockExtension on ApiService {
+  static ApiServiceProtocol get mock => MockApiService();
+}

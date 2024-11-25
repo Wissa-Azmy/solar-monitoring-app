@@ -5,9 +5,9 @@ import 'package:solar_monitoring_app/presentation/common/design/app_size.dart';
 import 'package:solar_monitoring_app/presentation/common/strings/strings.dart';
 import 'package:solar_monitoring_app/presentation/common/widgets/app_state_body.dart';
 import 'package:solar_monitoring_app/presentation/common/widgets/solar_app_bar.dart';
-import 'package:solar_monitoring_app/presentation/screens/battery_consumption.dart';
-import 'package:solar_monitoring_app/presentation/screens/house_consumption.dart';
-import 'package:solar_monitoring_app/presentation/screens/solar_generation.dart';
+import 'package:solar_monitoring_app/presentation/screens/battery_consumption_screen.dart';
+import 'package:solar_monitoring_app/presentation/screens/house_consumption_screen.dart';
+import 'package:solar_monitoring_app/presentation/screens/solar_generation_screen.dart';
 
 import '../common/states/solar_data_cubit.dart';
 import '../common/states/solar_data_satate.dart';
@@ -17,9 +17,9 @@ class TabBarController extends StatelessWidget {
 
   Widget screenFor(SolarDataState state) {
     final List<Widget> screens = [
-      SolarGeneration(data: state.solarMonitoringData),
-      HouseConsumption(data: state.houseMonitoringData),
-      BatteryConsumption(data: state.batteryMonitoringData),
+      SolarGenerationScreen(data: state.solarMonitoringData),
+      HouseConsumptionScreen(data: state.houseMonitoringData),
+      BatteryConsumptionScreen(data: state.batteryMonitoringData),
     ];
 
     return screens[state.selectedTabIndex];
