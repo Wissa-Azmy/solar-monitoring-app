@@ -16,13 +16,18 @@ class SolarDataDto {
         timestamp: DateTime.parse(json['timestamp']),
         value: json.toInt('value').toDouble(),
       );
+
+  Map<String, dynamic> toJson() => {
+        'timestamp': timestamp.toIso8601String(), // Convert DateTime to String
+        'value': value.toInt(),
+      };
 }
 
 extension DomainModelExtension on SolarDataDto {
   SolarDataModel get toDomainModel => SolarDataModel(
-    timestamp: timestamp,
-    powerInWatts: value,
-  );
+        timestamp: timestamp,
+        powerInWatts: value,
+      );
 }
 
 extension TypeCastExtension on Map<String, dynamic> {

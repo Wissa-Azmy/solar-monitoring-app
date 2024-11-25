@@ -2,12 +2,20 @@ import 'package:http/http.dart';
 import 'package:solar_monitoring_app/data/services/api_service.dart';
 import 'package:solar_monitoring_app/domain/common/error_handling/external_error.dart';
 import 'package:solar_monitoring_app/domain/common/extensions/string_extensions.dart';
-import 'package:solar_monitoring_app/domain/data_service_protocols/solar_data_service_protocol.dart';
 import 'package:solar_monitoring_app/domain/models/monitoring_type.dart';
 
 import '../../domain/common/error_handling/app_error.dart';
 import '../DTOs/solar_data_dto.dart';
 import '../common/api_resource.dart';
+
+// I adopted this `*_protocol` naming convention from iOS/Swift development
+// But, I am not willing to die for it.😀
+abstract class SolarDataServiceProtocol {
+  Future<List<SolarDataDto>> getSolarData({
+    required MonitoringType type,
+    required String date,
+  });
+}
 
 class SolarDataService implements SolarDataServiceProtocol {
   final ApiServiceProtocol apiService;

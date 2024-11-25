@@ -1,3 +1,5 @@
+import 'package:solar_monitoring_app/data/services/cache_data_service.dart';
+
 import '../data/repositories/solar_data_repository.dart';
 import '../data/services/api_service.dart';
 import '../data/services/solar_data_service.dart';
@@ -7,8 +9,13 @@ import '../domain/use_cases/get_solar_data_use_case.dart';
 // Can be replaced by GetIt or any other package instead
 class SolarAppUseCases {
   static GetSolarDataUseCase makeGetSolarDataUseCase() {
-    final solarDataService = SolarDataService(apiService: ApiService());
-    final repo = SolarDataRepository(solarDataService: solarDataService);
+    final solarDataService = SolarDataService(
+      apiService: ApiService(),
+    );
+    final repo = SolarDataRepository(
+      solarDataService: solarDataService,
+      cacheDataService: CacheDataService(),
+    );
     return GetSolarDataUseCase(solarDataRepo: repo);
   }
 }

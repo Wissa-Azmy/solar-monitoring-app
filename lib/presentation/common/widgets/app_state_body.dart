@@ -29,15 +29,18 @@ class ErrorView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            AppSize.expandedSpace,
-            const Text('Something wrong happened!'),
-            Text(error),
-            AppSize.expandedSpace,
-          ],
+  Widget build(BuildContext context) => Padding(
+        padding: AppSize.small.padding,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              AppSize.expandedSpace,
+              const Text('Something wrong happened!'),
+              Text(error),
+              AppSize.expandedSpace,
+            ],
+          ),
         ),
       );
 }
