@@ -72,8 +72,8 @@ flutter run
 
 ### **Folder Structure**
 
+```
 lib/
-│
 ├── data/                      # Data Layer
 │   ├── common/                  # Data Layer shared resources
 │   ├── DTOs/                    # Data Transfer Objects (e.g., SolarDataDto)
@@ -97,6 +97,8 @@ lib/
 ├── dependencies/                  # Dependency Management
 │
 └── main.dart                   # App entry point
+```
+
 
 ### **Dependencies**
 
