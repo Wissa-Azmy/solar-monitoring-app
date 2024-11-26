@@ -9,9 +9,9 @@ import 'package:solar_monitoring_app/presentation/screens/battery_consumption_sc
 import 'package:solar_monitoring_app/presentation/screens/house_consumption_screen.dart';
 import 'package:solar_monitoring_app/presentation/screens/solar_generation_screen.dart';
 
-import '../common/states/solar_data_cubit.dart';
-import '../common/states/solar_data_satate.dart';
-import '../common/widgets/text_label.dart';
+import 'states/solar_data_cubit.dart';
+import 'states/solar_data_satate.dart';
+import '../../common/widgets/text_label.dart';
 
 class TabBarController extends StatelessWidget {
   TabBarController({super.key});

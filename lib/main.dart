@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solar_monitoring_app/presentation/common/design/app_theme.dart';
 import 'package:solar_monitoring_app/presentation/common/state_management/app_bloc_observer.dart';
-import 'package:solar_monitoring_app/presentation/screens/tab_bar_controller.dart';
+import 'package:solar_monitoring_app/presentation/screens/tab_bar_controller/tab_bar_controller.dart';
 
 void main() {
   Bloc.observer = const AppBlocObserver();

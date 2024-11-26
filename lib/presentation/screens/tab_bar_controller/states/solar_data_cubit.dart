@@ -1,10 +1,10 @@
 import 'package:solar_monitoring_app/domain/models/monitoring_type.dart';
 import 'package:solar_monitoring_app/domain/use_cases/clear_cache_use_case.dart';
 import 'package:solar_monitoring_app/presentation/common/state_management/base_cubit.dart';
-import 'package:solar_monitoring_app/presentation/common/states/solar_data_satate.dart';
-import 'package:solar_monitoring_app/presentation_dependencies/solar_app_use_cases.dart';
+import 'package:solar_monitoring_app/presentation/screens/tab_bar_controller/states/solar_data_satate.dart';
 
-import '../../../domain/use_cases/get_solar_data_use_case.dart';
+import '../../../../dependencies/solar_app_use_cases.dart';
+import '../../../../domain/use_cases/get_solar_data_use_case.dart';
 
 class SolarDataCubit extends BaseCubit<SolarDataState> {
   final GetSolarDataUseCase getSolarDataUseCase;

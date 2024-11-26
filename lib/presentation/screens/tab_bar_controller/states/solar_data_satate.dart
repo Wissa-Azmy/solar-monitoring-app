@@ -2,7 +2,7 @@ import 'package:solar_monitoring_app/domain/common/extensions/date_time_extensio
 import 'package:solar_monitoring_app/domain/models/solar_data_model.dart';
 import 'package:solar_monitoring_app/presentation/common/state_management/base_state.dart';
 
-import '../../../domain/common/error_handling/app_error.dart';
+import '../../../../domain/common/error_handling/app_error.dart';
 
 class SolarDataState extends BaseState {
   final List<SolarDataModel> solarMonitoringData;
