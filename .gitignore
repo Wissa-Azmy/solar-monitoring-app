@@ -31,6 +31,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# mocks files
+*.mocks.dart
+
 # Symbolication related
 app.*.symbols
 
