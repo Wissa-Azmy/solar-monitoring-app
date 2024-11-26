@@ -1,11 +1,16 @@
-class SolarDataModel {
+import 'package:equatable/equatable.dart';
+
+class SolarDataModel extends Equatable {
   final DateTime timestamp;
-  final double powerInWatts;
+  final double value;
 
-  double get powerInKiloWatts => powerInWatts / 1000;
+  double get valueInKiloWatts => value / 1000;
 
-  SolarDataModel({
+  const SolarDataModel({
     required this.timestamp,
-    required this.powerInWatts,
+    required this.value,
   });
+
+  @override
+  List<Object?> get props => [timestamp, value];
 }

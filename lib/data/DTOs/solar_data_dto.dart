@@ -1,12 +1,13 @@
+import 'package:equatable/equatable.dart';
 import 'package:solar_monitoring_app/domain/models/solar_data_model.dart';
 
 import '../../domain/common/error_handling/decoding_error.dart';
 
-class SolarDataDto {
+class SolarDataDto extends Equatable {
   final DateTime timestamp;
   final double value;
 
-  SolarDataDto({
+  const SolarDataDto({
     required this.timestamp,
     required this.value,
   });
@@ -21,12 +22,15 @@ class SolarDataDto {
         'timestamp': timestamp.toIso8601String(), // Convert DateTime to String
         'value': value.toInt(),
       };
+
+  @override
+  List<Object?> get props => [timestamp, value];
 }
 
 extension DomainModelExtension on SolarDataDto {
   SolarDataModel get toDomainModel => SolarDataModel(
         timestamp: timestamp,
-        powerInWatts: value,
+        value: value,
       );
 }
 

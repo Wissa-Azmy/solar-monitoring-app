@@ -12,12 +12,12 @@ class SolarDataChartState extends BaseState {
   final TimeOfDay? endTime;
 
   List<FlSpot> get chartSpots => chartData.map((point) {
-        double yValue = isShowingKiloWatts ? point.powerInKiloWatts : point.powerInWatts;
+        double yValue = isShowingKiloWatts ? point.valueInKiloWatts : point.value;
         double xValue = point.timestamp.millisecondsSinceEpoch.toDouble();
         return FlSpot(xValue, yValue);
       }).toList();
 
-  Color get chartColor => chartData.last.powerInWatts > chartData.first.powerInWatts ? Colors.green : Colors.red;
+  Color get chartColor => chartData.last.value > chartData.first.value ? Colors.green : Colors.red;
 
   String get unitText => isShowingKiloWatts ? "kW" : "W";
 
